@@ -7,6 +7,5 @@ public class HelloNumbers {
             total = total + x;
             x = x + 1;
         }
-        System.out.println("end");
 	}
 } 
