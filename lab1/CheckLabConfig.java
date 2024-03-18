@@ -20,6 +20,7 @@ public class CheckLabConfig {
 		checkIsValidRepo(snapsRepoDir, snapsVariableName, isWindows, true);
 	}
 
+
 	public static void checkVariableNotNull(String value, String name) {
 		if (value == null) {
 			System.out.println("ERROR! Environment variable " + name + " is not set.");
