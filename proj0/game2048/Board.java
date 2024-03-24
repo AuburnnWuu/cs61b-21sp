@@ -103,6 +103,29 @@ public class Board implements Iterable<Tile> {
         }
     }
 
+    private void moveUp(Board board, int col, int row){
+        for(col = board.size() - 1; col >= 0; col--){
+            for(row = board.size() - 1; row >= 0; row--){
+                // The uppermost stays put
+                if(board.tile(col,row) == null || row == board.size()){
+                    continue;
+                }
+                // The first not null tile:
+                if(board.tile(col,row + 1) == null){
+                    // If the upper tile is null
+                    // Then do recursive call until the uppermost or not null
+                    moveUp(board,col, row + 1);
+                }else{
+                    if(move(col, row + 1, board.tile(col, row))){
+                        //merge
+                    }else{
+
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     /** Returns the board as a string, used for debugging. */
     public String toString() {
