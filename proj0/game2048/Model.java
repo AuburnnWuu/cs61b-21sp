@@ -199,7 +199,7 @@ public class Model extends Observable {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
-        int row; int col;
+        int row = 0; int col = 0;
         for(row = 0; row < b.size(); row ++){
             for(col = 0; col < b.size(); col++){
                 if(b.tile(col,row) == null){
@@ -217,7 +217,7 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
-        int row; int col;
+        int row = 0; int col = 0;
         for(row = 0; row < b.size(); row ++){
             for(col = 0; col < b.size(); col++){
                 if(b.tile(col,row) == null){
@@ -242,7 +242,7 @@ public class Model extends Observable {
         // There is at least one empty space on the board
         if(emptySpaceExists(b)){
             return true;
-        }
+        };
         // There are two adjacent tiles with the same value
         // 1. need a helper function to check whether there is a tile with the same value
         //    in four direction.
