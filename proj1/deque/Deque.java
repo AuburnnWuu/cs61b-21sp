@@ -12,6 +12,8 @@ public interface Deque<T> {
 
     int size();
 
+    void printDeque();
+
     T removeFirst();
 
     T removeLast();
