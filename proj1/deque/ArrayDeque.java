@@ -2,34 +2,34 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private T[] items;
     private int size;
     private int nextFirst;
     private int nextLast;
 
     public ArrayDeque() {
-        items = (T[])new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 4;
         nextLast = 5;
     }
 
     @Deprecated
-    public int findHead(){
-        if (nextFirst + 1 == items.length){
+    public int findHead() {
+        if (nextFirst + 1 == items.length) {
             return 0;
-        }else{
+        } else {
             return nextFirst + 1;
         }
     }
 
     // ** important **
     // get relative position of "First" with any given index
-    public int arrayIndex(int index){
-        if(nextFirst + 1 + index >= items.length){
+    public int arrayIndex(int index) {
+        if (nextFirst + 1 + index >= items.length) {
             return nextFirst + 1 + index - items.length;
-        }else{
+        } else {
             return nextFirst + 1 + index;
         }
     }
@@ -44,7 +44,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 //            System.arraycopy(items, 0, temp, temp.length / 4 + sizeToEnd, nextLast);
 //        }
         int ind = 0;
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             ind = arrayIndex(i);
             temp[capacity / 4 + i] = items[ind];
         }
@@ -53,61 +53,61 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         nextLast = nextFirst + size + 1;
     }
 
-    public void addFirst(T item){
-        if(size == items.length - 2){
+    public void addFirst(T item) {
+        if (size == items.length - 2) {
             resize(items.length * 2);
         }
         items[nextFirst] = item;
         size += 1;
-        if(nextFirst == 0){
+        if (nextFirst == 0) {
             nextFirst = items.length - 1;
-        }else{
+        } else {
             nextFirst -= 1;
         }
     }
 
-    public void addLast(T item){
-        if(size == items.length - 2){
+    public void addLast(T item) {
+        if (size == items.length - 2) {
             resize(items.length * 2);
         }
         items[nextLast] = item;
         size += 1;
-        if (nextLast + 1 == items.length){
+        if (nextLast + 1 == items.length) {
             nextLast = 0;
-        }else{
+        } else {
             nextLast += 1;
         }
     }
 
-     public int size(){
+    public int size() {
         return size;
-     }
+    }
 
-     public T getFirst(){
+    public T getFirst() {
         return items[arrayIndex(0)];
-     }
+    }
 
-     public T getLast(){
+    public T getLast() {
         return items[arrayIndex(size - 1)];
-     }
+    }
 
-     public T get(int index){
+    public T get(int index) {
         return items[arrayIndex(index)];
-     }
+    }
 
-     public T removeFirst(){
-        if(getFirst() == null){
+    public T removeFirst() {
+        if (getFirst() == null) {
             return null;
         }
-         T first = getFirst();
-         items[arrayIndex(0)] = null;
-         size -= 1;
-         nextFirst = arrayIndex(0);
-         return first;
-     }
+        T first = getFirst();
+        items[arrayIndex(0)] = null;
+        size -= 1;
+        nextFirst = arrayIndex(0);
+        return first;
+    }
 
-     public T removeLast(){
-        if (getLast() == null){
+    public T removeLast() {
+        if (getLast() == null) {
             return null;
         }
         T last = getLast();
@@ -115,14 +115,14 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         size -= 1;
         nextLast = arrayIndex(size - 1);
         return last;
-     }
+    }
 
-     public void printDeque(){
-        for(int i = 0; i < size; i++){
+    public void printDeque() {
+        for (int i = 0; i < size; i++) {
             System.out.print(items[arrayIndex(i)] + " ");
         }
-         System.out.println();
-     }
+        System.out.println();
+    }
 
 
     /**
@@ -148,7 +148,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         }
     }
 
-    public Iterator<T> iterator(){
+    public Iterator<T> iterator() {
         return new ArrayDequeIterator();
     }
 
