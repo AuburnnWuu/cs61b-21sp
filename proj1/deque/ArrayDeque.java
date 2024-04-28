@@ -15,18 +15,18 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         nextLast = 5;
     }
 
-    @Deprecated
-    public int findHead() {
-        if (nextFirst + 1 == items.length) {
-            return 0;
-        } else {
-            return nextFirst + 1;
-        }
-    }
+//    @Deprecated
+//    public int findHead() {
+//        if (nextFirst + 1 == items.length) {
+//            return 0;
+//        } else {
+//            return nextFirst + 1;
+//        }
+//    }
 
     // ** important **
     // get relative position of "First" with any given index
-    public int arrayIndex(int index) {
+    private int arrayIndex(int index) {
         if (nextFirst + 1 + index >= items.length) {
             return nextFirst + 1 + index - items.length;
         } else {
@@ -34,7 +34,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         }
     }
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         T[] temp = (T[]) new Object[capacity];
 //        if(nextFirst < nextLast){
 //            System.arraycopy(items,0,temp, temp.length / 4,-1);
@@ -83,11 +83,11 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         return size;
     }
 
-    public T getFirst() {
+    private T getFirst() {
         return items[arrayIndex(0)];
     }
 
-    public T getLast() {
+    private T getLast() {
         return items[arrayIndex(size - 1)];
     }
 
